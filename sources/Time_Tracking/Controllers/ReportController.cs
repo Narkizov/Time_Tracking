@@ -12,11 +12,15 @@ using Time_Tracking.Logger;
 
 namespace Time_Tracking.Controllers
 {
+    [Route("[controller]/[action]")]
     public class ReportController : Controller
     {
         private ILogger _logger;
+
         private UsersGRUD _usersGRUD;
+
         private ReportsGRUD _reportsGRUD;
+
         public ReportController(ILogger<ReportController> logger, UsersGRUD usersGRUD, ReportsGRUD reportsGRUD)
         {
             _logger = logger;
@@ -24,6 +28,11 @@ namespace Time_Tracking.Controllers
             _usersGRUD = usersGRUD;
         }
 
+        /// <summary>
+        /// Возвращает форму в виде представления для создания отчета
+        /// </summary>
+        /// <response code="200">Удачное выполнение запроса</response>
+        /// <response code="400">Ошибка при выполнения запроса</response>
         [HttpGet]
         public async Task<IActionResult> Create()
         {
@@ -41,8 +50,14 @@ namespace Time_Tracking.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Создает отчет о пользователе
+        /// </summary>
+        /// <param name="report">Информация об отчете</param>
+        /// <response code="200">Удачное выполнение запроса</response>
+        /// <response code="400">Ошибка при выполнения запроса</response>
         [HttpPost]
-        public async Task<IActionResult> Create(Report report)
+        public async Task<IActionResult> Create([FromHeader] Report report)
         {
             if (String.IsNullOrEmpty(report.Comment) && String.IsNullOrWhiteSpace(report.Comment))
                 ModelState.AddModelError("Comment", "Поле примечание обязательно для заполнения.");
@@ -86,8 +101,15 @@ namespace Time_Tracking.Controllers
 
         }
 
+        /// <summary>
+        /// Возвращает форму в виде представления для редактирования отчета
+        /// </summary>
+        /// <param name="id">Уникальный идентификатор отчета</param>
+        /// <response code="200">Удачное выполнение запроса</response>
+        /// <response code="400">Ошибка при выполнения запроса</response>
+        /// <response code="404">Ресурс не найден</response>
         [HttpGet]
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit([FromQuery] int? id)
         {
             if (id != null)
             {
@@ -111,8 +133,14 @@ namespace Time_Tracking.Controllers
             return NotFound();
         }
 
+        /// <summary>
+        /// Редактирует отчет 
+        /// </summary>
+        /// <param name="report">Информация об отчете</param>
+        /// <response code="200">Удачное выполнение запроса</response>
+        /// <response code="400">Ошибка при выполнения запроса</response>
         [HttpPost]
-        public async Task<IActionResult> Edit(Report report)
+        public async Task<IActionResult> Edit([FromHeader] Report report)
         {
             if (String.IsNullOrEmpty(report.Comment) && String.IsNullOrWhiteSpace(report.Comment))
                 ModelState.AddModelError("Comment", "Поле примечание обязательно для заполнения.");
@@ -142,9 +170,16 @@ namespace Time_Tracking.Controllers
             return View(report);
         }
 
+        /// <summary>
+        /// Возвращает об удаляемой отчете в виде представления
+        /// </summary>
+        /// <param name="id">Уникальный идентификатор отчета</param>        
+        /// <response code="200">Удачное выполнение запроса</response>
+        /// <response code="400">Ошибка при выполнения запроса</response>
+        /// <response code="404">Ресурс не найден</response>
         [HttpGet]
         [ActionName("Delete")]
-        public async Task<IActionResult> DeleteConfirm(int? id)
+        public async Task<IActionResult> DeleteConfirm([FromQuery] int? id)
         {
             if (id != null)
             {
@@ -168,8 +203,15 @@ namespace Time_Tracking.Controllers
             return NotFound();
         }
 
+        /// <summary>
+        /// Удаляет отчет по идентификатору
+        /// </summary>
+        /// <param name="id">Уникальный идентификатор отчета</param>
+        /// <response code="200">Удачное выполнение запроса</response>
+        /// <response code="400">Ошибка при выполнения запроса</response>
+        /// <response code="404">Ресурс не найден</response>
         [HttpPost]
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete([FromQuery]  int? id)
         {
             if (id != null)
             {
@@ -197,6 +239,11 @@ namespace Time_Tracking.Controllers
             return NotFound();
         }
 
+        /// <summary>
+        /// Возвращает всех пользователей в системе
+        /// </summary>
+        /// <response code="200">Удачное выполнение запроса</response>
+        /// <response code="400">Ошибка при выполнения запроса</response>
         [HttpGet]
         public async Task<IActionResult> ReportForMonth()
         {
@@ -215,8 +262,15 @@ namespace Time_Tracking.Controllers
             return View(users);
         }
 
+        /// <summary>
+        /// По заданному месяцу и идентификатору пользователя, возвращает все связанные с ним отчеты
+        /// </summary>
+        /// <param name="userId">Идентификатор пользователя</param>
+        /// <param name="numberMonth">Месяц (число от 1 до 12)</param>
+        /// <response code="200">Удачное выполнение запроса</response>
+        /// <response code="400">Ошибка при выполнения запроса</response>
         [HttpGet]
-        public async Task<JsonResult> GetReportsForMonthAndUser(int userId, int numberMonth)
+        public async Task<JsonResult> GetReportsForMonthAndUser([FromQuery] int userId, [FromQuery] int numberMonth)
         {
             List<Report> reports = null;
 
