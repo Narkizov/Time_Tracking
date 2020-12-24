@@ -20,6 +20,7 @@
 Должно получиться как на скриншоте ниже.
 ![alt text](https://github.com/Narkizov/Time_Tracking/blob/readme-modify/resources/swagger.png)
 
+
 # Структура репозитория
 Ниже описана структура репозитория.
 

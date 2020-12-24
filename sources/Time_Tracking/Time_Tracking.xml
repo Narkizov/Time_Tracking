@@ -1,0 +1,181 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Time_Tracking</name>
+    </assembly>
+    <members>
+        <member name="M:Time_Tracking.Controllers.ReportController.Create">
+            <summary>
+            Возвращает форму в виде представления для создания отчета
+            </summary>
+            <response code="200">Удачное выполнение запроса</response>
+            <response code="400">Ошибка при выполнения запроса</response>
+        </member>
+        <member name="M:Time_Tracking.Controllers.ReportController.Create(Time_Tracking.Models.Report)">
+            <summary>
+            Создает отчет о пользователе
+            </summary>
+            <param name="report">Информация об отчете</param>
+            <response code="200">Удачное выполнение запроса</response>
+            <response code="400">Ошибка при выполнения запроса</response>
+        </member>
+        <member name="M:Time_Tracking.Controllers.ReportController.Edit(System.Nullable{System.Int32})">
+            <summary>
+            Возвращает форму в виде представления для редактирования отчета
+            </summary>
+            <param name="id">Уникальный идентификатор отчета</param>
+            <response code="200">Удачное выполнение запроса</response>
+            <response code="400">Ошибка при выполнения запроса</response>
+            <response code="404">Ресурс не найден</response>
+        </member>
+        <member name="M:Time_Tracking.Controllers.ReportController.Edit(Time_Tracking.Models.Report)">
+            <summary>
+            Редактирует отчет 
+            </summary>
+            <param name="report">Информация об отчете</param>
+            <response code="200">Удачное выполнение запроса</response>
+            <response code="400">Ошибка при выполнения запроса</response>
+        </member>
+        <member name="M:Time_Tracking.Controllers.ReportController.DeleteConfirm(System.Nullable{System.Int32})">
+            <summary>
+            Возвращает об удаляемой отчете в виде представления
+            </summary>
+            <param name="id">Уникальный идентификатор отчета</param>        
+            <response code="200">Удачное выполнение запроса</response>
+            <response code="400">Ошибка при выполнения запроса</response>
+            <response code="404">Ресурс не найден</response>
+        </member>
+        <member name="M:Time_Tracking.Controllers.ReportController.Delete(System.Nullable{System.Int32})">
+            <summary>
+            Удаляет отчет по идентификатору
+            </summary>
+            <param name="id">Уникальный идентификатор отчета</param>
+            <response code="200">Удачное выполнение запроса</response>
+            <response code="400">Ошибка при выполнения запроса</response>
+            <response code="404">Ресурс не найден</response>
+        </member>
+        <member name="M:Time_Tracking.Controllers.ReportController.ReportForMonth">
+            <summary>
+            Возвращает всех пользователей в системе
+            </summary>
+            <response code="200">Удачное выполнение запроса</response>
+            <response code="400">Ошибка при выполнения запроса</response>
+        </member>
+        <member name="M:Time_Tracking.Controllers.ReportController.GetReportsForMonthAndUser(System.Int32,System.Int32)">
+            <summary>
+            По заданному месяцу и идентификатору пользователя, возвращает все связанные с ним отчеты
+            </summary>
+            <param name="userId">Идентификатор пользователя</param>
+            <param name="numberMonth">Месяц (число от 1 до 12)</param>
+            <response code="200">Удачное выполнение запроса</response>
+            <response code="400">Ошибка при выполнения запроса</response>
+        </member>
+        <member name="M:Time_Tracking.Controllers.UserController.Index">
+            <summary>
+            Возвращает всех пользователей в системе
+            </summary>
+            <response code="200">Удачное выполнение запроса</response>
+            <response code="400">Ошибка при выполнения запроса</response>
+        </member>
+        <member name="M:Time_Tracking.Controllers.UserController.Create">
+            <summary>
+            Возвращает форму в виде представления для создания пользователя в системе
+            </summary>
+            <response code="200">Удачное выполнение запроса</response>
+        </member>
+        <member name="M:Time_Tracking.Controllers.UserController.Create(Time_Tracking.Models.User)">
+            <summary>
+            Создает пользователя в системе
+            </summary>
+            <param name="user">Создаваемый пользователь</param>
+            <response code="200">Удачное выполнение запроса</response>
+            <response code="400">Ошибка при выполнения запроса</response>
+        </member>
+        <member name="M:Time_Tracking.Controllers.UserController.Edit(System.Nullable{System.Int32})">
+            <summary>
+            Возвращает форму в виде представления для редактирования информации о пользователе
+            </summary>
+            <param name="id">Идентификатор пользователя</param>
+            <response code="200">Удачное выполнение запроса</response>
+            <response code="400">Ошибка при выполнения запроса</response>
+            <response code="404">Ресурс не найден</response>
+        </member>
+        <member name="M:Time_Tracking.Controllers.UserController.Edit(Time_Tracking.Models.User,System.String)">
+            <summary>
+            Редактирует заданного пользователя
+            </summary>
+            <param name="user">Отредактированные данные</param>
+            <param name="currentEmail">Старый email пользователя</param>
+            <response code="200">Удачное выполнение запроса</response>
+            <response code="400">Ошибка при выполнения запроса</response>
+        </member>
+        <member name="M:Time_Tracking.Controllers.UserController.ConfirmDelete(System.Nullable{System.Int32})">
+            <summary>
+            Возвращает информацию об удаляемом пользователе в виде представления
+            </summary>
+            <param name="id">Идентификатор пользователя</param>        
+            <response code="200">Удачное выполнение запроса</response>
+            <response code="400">Ошибка при выполнения запроса</response>
+            <response code="404">Ресурс не найден</response>
+        </member>
+        <member name="M:Time_Tracking.Controllers.UserController.Delete(System.Nullable{System.Int32})">
+            <summary>
+            Удаляет пользователя по идентификатору
+            </summary>
+            <param name="id">Идентификатор пользователя</param>
+            <response code="200">Удачное выполнение запроса</response>
+            <response code="400">Ошибка при выполнения запроса</response>
+            <response code="404">Ресурс не найден</response>
+        </member>
+        <member name="P:Time_Tracking.Models.Report.Id">
+            <summary>
+            Уникальный идентификатор отчета
+            </summary>
+        </member>
+        <member name="P:Time_Tracking.Models.Report.Comment">
+            <summary>
+            Комментарий к отчету
+            </summary>
+        </member>
+        <member name="P:Time_Tracking.Models.Report.QuantityOfHours">
+            <summary>
+            Количество отработанных часов
+            </summary>
+        </member>
+        <member name="P:Time_Tracking.Models.Report.Date">
+            <summary>
+            Дата написания отчета
+            </summary>
+        </member>
+        <member name="P:Time_Tracking.Models.Report.UserId">
+            <summary>
+            Уникальный идентификатор пользователя
+            </summary>
+        </member>
+        <member name="P:Time_Tracking.Models.User.Id">
+            <summary>
+            Уникальный идентификатор пользователя
+            </summary>
+        </member>
+        <member name="P:Time_Tracking.Models.User.Email">
+            <summary>
+            Email пользователя
+            </summary>
+        </member>
+        <member name="P:Time_Tracking.Models.User.FName">
+            <summary>
+            Фамилия пользователя
+            </summary>
+        </member>
+        <member name="P:Time_Tracking.Models.User.MName">
+            <summary>
+            Имя пользователя
+            </summary>
+        </member>
+        <member name="P:Time_Tracking.Models.User.LName">
+            <summary>
+            Отчество пользователя
+            </summary>
+        </member>
+    </members>
+</doc>

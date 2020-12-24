@@ -12,11 +12,16 @@ using Time_Tracking.Services;
 
 namespace Time_Tracking.Controllers
 {
+
+    [Route("[controller]/[action]")]
     public class UserController : Controller
     {
         private ILogger _logger;
+
         private UsersGRUD _usersGRUD;
+
         private ReportsGRUD _reportsGRUD;
+
         public UserController(ILogger<UserController> logger, UsersGRUD usersGRUD, ReportsGRUD reportsGRUD)
         {
             _logger = logger;
@@ -24,6 +29,11 @@ namespace Time_Tracking.Controllers
             _usersGRUD = usersGRUD;
         }
 
+        /// <summary>
+        /// Возвращает всех пользователей в системе
+        /// </summary>
+        /// <response code="200">Удачное выполнение запроса</response>
+        /// <response code="400">Ошибка при выполнения запроса</response>
         [HttpGet]
         public async Task<IActionResult> Index()
         {
@@ -51,14 +61,24 @@ namespace Time_Tracking.Controllers
             return View(usersAndPersons);
         }
 
+        /// <summary>
+        /// Возвращает форму в виде представления для создания пользователя в системе
+        /// </summary>
+        /// <response code="200">Удачное выполнение запроса</response>
         [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
 
+        /// <summary>
+        /// Создает пользователя в системе
+        /// </summary>
+        /// <param name="user">Создаваемый пользователь</param>
+        /// <response code="200">Удачное выполнение запроса</response>
+        /// <response code="400">Ошибка при выполнения запроса</response>
         [HttpPost]
-        public async Task<IActionResult> Create(User user)
+        public async Task<IActionResult> Create([FromHeader] User user)
         {
             if (String.IsNullOrEmpty(user.Email) && String.IsNullOrWhiteSpace(user.Email))
                 ModelState.AddModelError("Email", "Поле не может быть пустым.");
@@ -99,8 +119,15 @@ namespace Time_Tracking.Controllers
 
         }
 
+        /// <summary>
+        /// Возвращает форму в виде представления для редактирования информации о пользователе
+        /// </summary>
+        /// <param name="id">Идентификатор пользователя</param>
+        /// <response code="200">Удачное выполнение запроса</response>
+        /// <response code="400">Ошибка при выполнения запроса</response>
+        /// <response code="404">Ресурс не найден</response>
         [HttpGet]
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit([FromQuery] int? id)
         {
             if (id == null)
                 NotFound();
@@ -124,8 +151,15 @@ namespace Time_Tracking.Controllers
 
         }
 
+        /// <summary>
+        /// Редактирует заданного пользователя
+        /// </summary>
+        /// <param name="user">Отредактированные данные</param>
+        /// <param name="currentEmail">Старый email пользователя</param>
+        /// <response code="200">Удачное выполнение запроса</response>
+        /// <response code="400">Ошибка при выполнения запроса</response>
         [HttpPost]
-        public async Task<IActionResult> Edit(User user, string currentEmail)
+        public async Task<IActionResult> Edit([FromHeader] User user, string currentEmail)
         {
             if (String.IsNullOrEmpty(user.Email) && String.IsNullOrWhiteSpace(user.Email))
                 ModelState.AddModelError("Email", "Поле EMail не может быть пустым.");
@@ -163,9 +197,16 @@ namespace Time_Tracking.Controllers
             return View(user);
         }
 
+        /// <summary>
+        /// Возвращает информацию об удаляемом пользователе в виде представления
+        /// </summary>
+        /// <param name="id">Идентификатор пользователя</param>        
+        /// <response code="200">Удачное выполнение запроса</response>
+        /// <response code="400">Ошибка при выполнения запроса</response>
+        /// <response code="404">Ресурс не найден</response>
         [HttpGet]
         [ActionName("Delete")]
-        public async Task<IActionResult> ConfirmDelete(int? id)
+        public async Task<IActionResult> ConfirmDelete([FromQuery] int? id)
         {
             if (id != null)
             {
@@ -189,8 +230,15 @@ namespace Time_Tracking.Controllers
             return NotFound();
         }
 
+        /// <summary>
+        /// Удаляет пользователя по идентификатору
+        /// </summary>
+        /// <param name="id">Идентификатор пользователя</param>
+        /// <response code="200">Удачное выполнение запроса</response>
+        /// <response code="400">Ошибка при выполнения запроса</response>
+        /// <response code="404">Ресурс не найден</response>
         [HttpPost]
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete([FromQuery] int? id)
         {
             if (id != null)
             {
