@@ -20,7 +20,9 @@ namespace Time_Tracking
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder
+                        
+                        .UseStartup<Startup>();
                 });
     }
 }

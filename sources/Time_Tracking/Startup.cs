@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -18,6 +19,7 @@ namespace Time_Tracking
 {
     public class Startup
     {
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -29,7 +31,8 @@ namespace Time_Tracking
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<TrackingDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<TrackingDbContext>(options => options.UseSqlServer(Configuration["ASPNETCORE_DB"]));
+            
             services.AddControllersWithViews();
 
             services.AddScoped<ReportsGRUD>();
@@ -50,7 +53,7 @@ namespace Time_Tracking
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
         {
             if (env.IsDevelopment())
             {
@@ -67,6 +70,7 @@ namespace Time_Tracking
             });
 
             
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
