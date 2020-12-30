@@ -9,16 +9,16 @@
 
 # Инструкция по использованию приложения
 После того как проект запущен, на главной странице есть три кнопки (Создать, отчеты, отчеты за указанный месяц).
-![alt text](https://github.com/Narkizov/Time_Tracking/tree/master/resources/point_main.png)
+![alt text](https://github.com/Narkizov/Time_Tracking/blob/master/resources/point_main.png)
 1. Кнопка ***создать***, позволяет создавать пользователей в системе. После того, как пользователь создан, он отобразиться на главной странице, а именно **https://localhost:5000/User/Index**. Каждый пользователь может быть отредактирован или удален из системы. 
 2. Кнопка ***отчеты*** открывает модальное окно, в котором содержаться отчеты пользователей. Также в этом модальном окне, можно создавать, редактировать и удалять ненужные отчеты.
 3. Кнопка ***отчет за указанный месяц***, перенаправляет на страницу, на которой для заданного пользователя, можно получить все отчеты за определенный месяц.
-![alt text](https://github.com/Narkizov/Time_Tracking/tree/master/resources/report_for_mounth.png)
+![alt text](https://github.com/Narkizov/Time_Tracking/blob/master/resources/report_for_mounth.png)
 
 # Информация о методах контроллера
 В проекте используется два контроллера, User и Report. Первый отвечает за получение информации о пользователях, также за создание, редактирование и удаление пользователец в системе. Второй выполняет аналогичные действия, но с отчетами пользователей. Для того, чтобы посмотреть OPEN API спецификацию заданных контроллеров, в поисковой строке браузера введите `http://localhost:5000/swagger/index.html`. (Проект должен быть запущен)
 Должно получиться как на скриншоте ниже.
-![alt text](https://github.com/Narkizov/Time_Tracking/tree/master/resources/swagger.png)
+![alt text](https://github.com/Narkizov/Time_Tracking/blob/master/resources/swagger.png)
 
 
 # Структура репозитория
