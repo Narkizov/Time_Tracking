@@ -3,11 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Time_Tracking.Interfaces;
 using Time_Tracking.Models;
 
 namespace Time_Tracking.Services
 {
-    public class UsersGRUD
+    public class UsersGRUD : IUserRepository
     {
         private TrackingDbContext _db;
 

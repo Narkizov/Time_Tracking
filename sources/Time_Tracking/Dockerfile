@@ -16,4 +16,8 @@ WORKDIR /app
 COPY --from=build-env /app/out .
 COPY Time_Tracking.xml .
 
+COPY ./Certificate/ /root/.aspnet/https/
+
+EXPOSE 443
+
 ENTRYPOINT ["dotnet", "Time_Tracking.dll"]

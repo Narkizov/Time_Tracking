@@ -9,6 +9,7 @@ using Time_Tracking.Models;
 using Time_Tracking.Logger;
 using Time_Tracking.ModelsView;
 using Time_Tracking.Services;
+using Time_Tracking.Interfaces;
 
 namespace Time_Tracking.Controllers
 {
@@ -18,11 +19,11 @@ namespace Time_Tracking.Controllers
     {
         private ILogger _logger;
 
-        private UsersGRUD _usersGRUD;
+        private IUserRepository _usersGRUD;
 
-        private ReportsGRUD _reportsGRUD;
+        private IReportRepository _reportsGRUD;
 
-        public UserController(ILogger<UserController> logger, UsersGRUD usersGRUD, ReportsGRUD reportsGRUD)
+        public UserController(ILogger<UserController> logger, IUserRepository usersGRUD, IReportRepository reportsGRUD)
         {
             _logger = logger;
             _reportsGRUD = reportsGRUD;

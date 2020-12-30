@@ -15,11 +15,16 @@ services:
     app:
         build: .
         container_name: timeTracking
-        ports:
-            - 5000:80
         environment:            
             ASPNETCORE_ENVIRONMENT: Development
             ASPNETCORE_DB: Data Source=mssql-server;Initial Catalog=Tracking;User ID=sa;Password=narkizovTestDb28122020
+            ASPNETCORE_HTTPS_PORT: 5001
+            ASPNETCORE_URLS: "https://+:443;http://+:80"
+            ASPNETCORE_Kestrel__Certificates__Default__Password: 1qaz2wsx3edc
+            ASPNETCORE_Kestrel__Certificates__Default__Path: /root/.aspnet/https/Time_Tracking.pfx
+        ports:
+            - 5000:80
+            - 5001:443
         links:
             - db
         restart: always

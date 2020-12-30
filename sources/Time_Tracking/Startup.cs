@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Time_Tracking.Interfaces;
 using Time_Tracking.Services;
 
 namespace Time_Tracking
@@ -32,11 +33,12 @@ namespace Time_Tracking
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<TrackingDbContext>(options => options.UseSqlServer(Configuration["ASPNETCORE_DB"]));
-            
+            //services.AddDbContext<TrackingDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddControllersWithViews();
 
-            services.AddScoped<ReportsGRUD>();
-            services.AddScoped<UsersGRUD>();
+            services.AddScoped<IReportRepository, ReportsGRUD>();
+            services.AddScoped<IUserRepository, UsersGRUD>();
 
             services.AddSwaggerGen(c =>
             {
@@ -59,6 +61,8 @@ namespace Time_Tracking
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseHttpsRedirection();
 
             app.UseStaticFiles();
             app.UseRouting();
