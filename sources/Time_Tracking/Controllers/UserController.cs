@@ -49,7 +49,7 @@ namespace Time_Tracking.Controllers
             }
             catch (Exception ex)
             {
-                _logger.ErrorMessage("При обращении к БД произошла ошибка", ex.Message, ex.StackTrace, DateTime.Now, ex.Source, ex.HResult);
+                _logger.ErrorMessage("При обращении к БД произошла ошибка", ex.Message, ex.StackTrace, DateTime.Now, ex.TargetSite.ReflectedType.DeclaringType.Name, ex.HResult);
                 return BadRequest();
             }           
 

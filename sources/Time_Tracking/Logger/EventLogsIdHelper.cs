@@ -23,7 +23,7 @@ namespace Time_Tracking.Logger
 
         static LoggerExtension()
         {
-            Error = LoggerMessage.Define<string, string, string, DateTime, string, int>(LogLevel.Information, EventLogsIdHelper.EventError, 
+            Error = LoggerMessage.Define<string, string, string, DateTime, string, int>(LogLevel.Error, EventLogsIdHelper.EventError, 
                 "Error: {message}, Inner message: {innerMessage}, Stack trace: {stackTrace}, Date: {date}, Class name: {className}, RequestId: {requestId}");
             
             InfoGRUD = LoggerMessage.Define<DateTime, string, string, string, string>(LogLevel.Information, EventLogsIdHelper.EventGrudOperation,
