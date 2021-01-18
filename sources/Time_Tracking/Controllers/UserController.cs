@@ -49,7 +49,7 @@ namespace Time_Tracking.Controllers
             }
             catch (Exception ex)
             {
-                _logger.ErrorMessage(ex.Message);
+                _logger.ErrorMessage("При обращении к БД произошла ошибка", ex.Message, ex.StackTrace, DateTime.Now, ex.Source, ex.HResult);
                 return BadRequest();
             }           
 
@@ -110,7 +110,7 @@ namespace Time_Tracking.Controllers
                 }
                 catch (Exception ex)
                 {
-                    _logger.ErrorMessage(ex.Message);
+                    _logger.ErrorMessage("Не удалось создать пользователя", ex.Message, ex.StackTrace, DateTime.Now, ex.Source, ex.HResult);
                     return BadRequest();
                 }
                 
@@ -144,7 +144,7 @@ namespace Time_Tracking.Controllers
             } 
             catch (Exception ex)
             {
-                _logger.ErrorMessage(ex.Message);
+                _logger.ErrorMessage("Ошибка при возврате формы для редактирования пользоветелей", ex.Message, ex.StackTrace, DateTime.Now, ex.Source, ex.HResult);
                 return BadRequest();
             }
 
@@ -187,7 +187,7 @@ namespace Time_Tracking.Controllers
                 }
                 catch (Exception ex)
                 {
-                    _logger.ErrorMessage(ex.Message);
+                    _logger.ErrorMessage("При редактировании пользователя возникла ошибка", ex.Message, ex.StackTrace, DateTime.Now, ex.Source, ex.HResult);
                     return BadRequest();
                 }
 
@@ -222,7 +222,7 @@ namespace Time_Tracking.Controllers
                 }
                 catch (Exception ex)
                 {
-                    _logger.ErrorMessage(ex.Message);
+                    _logger.ErrorMessage("Ошибка при возврате формы для удаления пользователя", ex.Message, ex.StackTrace, DateTime.Now, ex.Source, ex.HResult);
                     return BadRequest();
                 }
 
@@ -259,7 +259,7 @@ namespace Time_Tracking.Controllers
                 }
                 catch (Exception ex)
                 {
-                    _logger.ErrorMessage(ex.Message);
+                    _logger.ErrorMessage("Ошибка при удалении пользователя", ex.Message, ex.StackTrace, DateTime.Now, ex.Source, ex.HResult);
                     return BadRequest();
                 }
             }

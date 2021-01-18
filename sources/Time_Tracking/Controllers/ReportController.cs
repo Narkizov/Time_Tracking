@@ -44,7 +44,8 @@ namespace Time_Tracking.Controllers
             }
             catch (Exception ex)
             {
-                _logger.ErrorMessage(ex.Message);
+                
+                _logger.ErrorMessage("Ошибка при возврате формы для создания отчета", ex.Message, ex.StackTrace, DateTime.Now, ex.Source, ex.HResult);
                 return BadRequest();
             }
             
@@ -78,7 +79,7 @@ namespace Time_Tracking.Controllers
                 }
                 catch (Exception ex)
                 {
-                    _logger.ErrorMessage(ex.Message);
+                    _logger.ErrorMessage("Ошибка при добавлении нового отчета в БД", ex.Message, ex.StackTrace, DateTime.Now, ex.Source, ex.HResult);
                     return BadRequest();
                 }
 
@@ -91,7 +92,7 @@ namespace Time_Tracking.Controllers
             }
             catch (Exception ex)
             {
-                _logger.ErrorMessage(ex.Message);
+                _logger.ErrorMessage("Не удалось получить данны из БД", ex.Message, ex.StackTrace, DateTime.Now, ex.Source, ex.HResult);
                 return BadRequest();
             }
 
@@ -125,7 +126,7 @@ namespace Time_Tracking.Controllers
                 }
                 catch (Exception ex)
                 {
-                    _logger.ErrorMessage(ex.Message);
+                    _logger.ErrorMessage("Ошибка при возврате формы для редактирования отчета", ex.Message, ex.StackTrace, DateTime.Now, ex.Source, ex.HResult);
                     return BadRequest();
                 }
 
@@ -162,7 +163,7 @@ namespace Time_Tracking.Controllers
                 }
                 catch (Exception ex)
                 {
-                    _logger.ErrorMessage(ex.Message);
+                    _logger.ErrorMessage("Ошибка при обработке отредактированного отчета", ex.Message, ex.StackTrace, DateTime.Now, ex.Source, ex.HResult);
                     return BadRequest();
                 }
 
@@ -195,7 +196,7 @@ namespace Time_Tracking.Controllers
                 }
                 catch (Exception ex)
                 {
-                    _logger.ErrorMessage(ex.Message);
+                    _logger.ErrorMessage("Запрос на вывод представления для удаления отчета произошел с ошибкой", ex.Message, ex.StackTrace, DateTime.Now, ex.Source, ex.HResult);
                     return BadRequest();
                 }
 
@@ -232,7 +233,7 @@ namespace Time_Tracking.Controllers
                 }
                 catch (Exception ex)
                 {
-                    _logger.ErrorMessage(ex.Message);
+                    _logger.ErrorMessage("При удалении отчета произошла ошибка", ex.Message, ex.StackTrace, DateTime.Now, ex.Source, ex.HResult);
                     return BadRequest();
                 }
             }
@@ -256,7 +257,7 @@ namespace Time_Tracking.Controllers
             }
             catch (Exception ex)
             {
-                _logger.ErrorMessage(ex.Message);
+                _logger.ErrorMessage("При обращении к БД произошла ошибка", ex.Message, ex.StackTrace, DateTime.Now, ex.Source, ex.HResult);
                 return BadRequest();
             }
 
@@ -281,7 +282,7 @@ namespace Time_Tracking.Controllers
             }
             catch (Exception ex)
             {
-                _logger.ErrorMessage(ex.Message);
+                _logger.ErrorMessage("При обращении к БД произошла ошибка", ex.Message, ex.StackTrace, DateTime.Now, ex.Source, ex.HResult);
                 return Json(null);
             }
 
